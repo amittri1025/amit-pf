@@ -16,6 +16,7 @@ function MousePointer({name}) {
       className="mouse-pointer"
       variants={variants}
       animate="default"
+      style={{ zIndex: 9999 }}
     />
   );
 }
