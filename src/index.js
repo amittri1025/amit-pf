@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import MouseContextProvider from "./contexts/MouseContext";
+
 
 ReactDOM.render(
   <React.StrictMode>
+  <MouseContextProvider>
     <App />
-  </React.StrictMode>,
+  </MouseContextProvider>
+</React.StrictMode>,
   document.getElementById("root")
 );
 

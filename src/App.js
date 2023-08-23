@@ -17,30 +17,10 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MousePointer from "./components/MousePointer/MousePointer";
+import DotRing from "./components/DotRing/DotRing";
 
 function App() {
   const [load, upadateLoad] = useState(true);
-
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-
-  useEffect(() => {
-    const mouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      })
-    };
-
-    window.addEventListener("mousemove", mouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
-  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,7 +33,7 @@ function App() {
   return (
     <Router>
       <Preloader load={load} />
-        <MousePointer name={mousePosition} />
+      <DotRing />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
         <ScrollToTop />

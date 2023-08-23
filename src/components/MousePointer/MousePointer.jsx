@@ -1,24 +1,19 @@
-import style from "./styles.css";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-function MousePointer({name}) {
+export default function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ x: null, y: null });
 
-    // console.log("from mouse", name);
-  const variants = {
-    default: {
-      x: name.x -16,
-      y: name.y -16,
-    },
-  };
+  useEffect(() => {
+    const mouseMoveHandler = (event) => {
+      const { clientX, clientY } = event;
+      setMousePosition({ x: clientX, y: clientY });
+    };
+    document.addEventListener("mousemove", mouseMoveHandler);
 
-  return (
-    <motion.div
-      className="mouse-pointer"
-      variants={variants}
-      animate="default"
-      style={{ zIndex: 9999 }}
-    />
-  );
+    return () => {
+      document.removeEventListener("mousemove", mouseMoveHandler);
+    };
+  }, []);
+
+  return mousePosition;
 }
-
-export default MousePointer;
